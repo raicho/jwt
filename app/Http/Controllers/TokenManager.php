@@ -94,9 +94,10 @@ class TokenManager extends Controller
     public function getUserInfoByJwt($jwt) {
         $secret = env('APP_TOKEN_SECRET');
         $tokenParts = explode('.', $jwt);
+  
         if(!isSet($tokenParts[1]) || !isSet($tokenParts[2])) {
             return false;
-        }
+        } 
         $header = base64_decode($tokenParts[0]);
         $payload = base64_decode($tokenParts[1]);
         $userData = json_decode($payload, true);
